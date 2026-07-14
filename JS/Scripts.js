@@ -103,23 +103,29 @@ function setLanguage(lang){
 
     if(!t) return;
 
-    document.querySelector('a[href="#home"]').textContent =
-        t.home;
+    const navHome =
+        document.querySelector('a[href="#home"]');
+    if(navHome) navHome.textContent = t.home;
 
-    document.querySelector('a[href="#history"]').textContent =
-        t.history;
+    const navHistory =
+        document.querySelector('a[href="#history"]');
+    if(navHistory) navHistory.textContent = t.history;
 
-    document.querySelector('a[href="#apiary"]').textContent =
-        t.apiary;
+    const navApiary =
+        document.querySelector('a[href="#apiary"]');
+    if(navApiary) navApiary.textContent = t.apiary;
 
-    document.querySelector('a[href="#products"]').textContent =
-        t.catalog;
+    const navProducts =
+        document.querySelector('a[href="#products"]');
+    if(navProducts) navProducts.textContent = t.catalog;
 
-    document.querySelector('a[href="#prices"]').textContent =
-        t.prices;
+    const navPrices =
+        document.querySelector('a[href="#prices"]');
+    if(navPrices) navPrices.textContent = t.prices;
 
-    document.querySelector('a[href="#contacts"]').textContent =
-        t.contacts;
+    const navContacts =
+        document.querySelector('a[href="#contacts"]');
+    if(navContacts) navContacts.textContent = t.contacts;
 
     const heroTitle =
         document.querySelector(".hero h1");
@@ -215,58 +221,6 @@ if(roBtn){
 const form =
     document.querySelector("form");
 
-if(form){
-
-    form.addEventListener(
-        "submit",
-        function(event){
-
-            event.preventDefault();
-
-            const name =
-                document.querySelector(
-                    'input[type="text"]'
-                ).value.trim();
-
-            const phone =
-                document.querySelector(
-                    'input[type="tel"]'
-                ).value.trim();
-
-            if(name.length < 2){
-
-                alert(
-                    "Введите имя"
-                );
-
-                return;
-            }
-
-            if(phone.length < 5){
-
-                alert(
-                    "Введите телефон"
-                );
-
-                return;
-            }
-
-            const currentLanguage =
-                localStorage.getItem(
-                    "beelab_language"
-                ) || "ru";
-
-            alert(
-                translations[
-                    currentLanguage
-                ].success
-            );
-
-            form.reset();
-        }
-    );
-}
-
 // =======================
 // ПЛАВНАЯ ПРОКРУТКА
 // =======================
@@ -350,3 +304,72 @@ window.addEventListener(
 
     }
 );
+if(form){
+
+    form.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        const name =
+            document.querySelector(
+                'input[type="text"]'
+            ).value.trim();
+
+        const phone =
+            document.querySelector(
+                'input[type="tel"]'
+            ).value.trim();
+
+        if(name.length < 2){
+            alert("Введите имя");
+            return;
+        }
+
+        if(phone.length < 5){
+            alert("Введите телефон");
+            return;
+        }
+
+        const data = new FormData(form);
+
+        fetch("send.php", {
+
+            method: "POST",
+
+            body: data
+
+        })
+
+        .then(res => res.text())
+
+        .then(res => {
+
+            if(res.trim() === "success"){
+
+                document.getElementById("popup").style.display = "flex";
+
+                form.reset();
+
+            } else {
+
+                alert("Ошибка отправки. Попробуйте ещё раз.");
+
+            }
+
+        })
+
+        .catch(() => {
+
+            alert("Ошибка соединения. Попробуйте ещё раз.");
+
+        });
+
+    });
+
+}
+
+function closePopup(){
+
+    document.getElementById("popup").style.display="none";
+
+}

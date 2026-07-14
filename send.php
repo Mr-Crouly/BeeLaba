@@ -31,6 +31,5 @@ $context = stream_context_create($options);
 
 file_get_contents($url, false, $context);
 
-header("Location: main.html?success=1");
-exit;
+echo "success";
 ?>
