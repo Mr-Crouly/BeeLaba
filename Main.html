@@ -277,25 +277,28 @@ Messenger
 
 </div>
 
-<form>
+<form action="send.php" method="POST">
 
-<input
-type="text"
-placeholder="Ваше имя">
+    <input
+        type="text"
+        name="name"
+        placeholder="Ваше имя"
+        required>
 
-<input
-type="tel"
-placeholder="Телефон">
+    <input
+        type="tel"
+        name="phone"
+        placeholder="Телефон"
+        required>
 
-<textarea
-placeholder="Комментарий">
-</textarea>
+    <textarea
+        name="message"
+        placeholder="Комментарий">
+    </textarea>
 
-<button>
-
-Отправить
-
-</button>
+    <button type="submit">
+        Отправить
+    </button>
 
 </form>
 
