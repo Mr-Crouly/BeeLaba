@@ -20,6 +20,12 @@ body{
     line-height:1.6;
 }
 
+.logo img{
+    width: 70px;      /* нужная ширина */
+    height: auto;     /* высота подстроится автоматически */
+    display: block;
+}
+
 /* ================= NAVBAR ================= */
 
 nav{

@@ -26,7 +26,7 @@ const translations = {
         history: "История",
         apiary: "Пасека",
         catalog: "Каталог",
-        prices: "Цены",
+        order: "Заказать",
         contacts: "Контакты",
 
         heroTitle: "Натуральный мёд из самого севера Молдовы",
@@ -64,7 +64,7 @@ const translations = {
         history: "Istorie",
         apiary: "Stupină",
         catalog: "Catalog",
-        prices: "Prețuri",
+        order: "Comandă",
         contacts: "Contacte",
 
         heroTitle: "Miere naturală din inima Moldovei",
