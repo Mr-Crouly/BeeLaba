@@ -27,7 +27,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     <img src="images/logo.png" alt="Nectevia">
 </div>
 
-<ul>
+<button class="burger" id="burger" aria-label="Меню">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<ul id="navList">
 
 <li><a href="#home" data-i18n="home">Главная</a></li>
 
@@ -249,31 +255,37 @@ NecteVia Moldova —
 
 <div class="order-buttons">
 
-<a href="#" class="telegram">
+    <a href="https://t.me/ВАШ_ЛОГИН" class="telegram" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+        Telegram
+    </a>
 
-<i class="fa-brands fa-telegram"></i>
+    <a href="https://wa.me/373XXXXXXXX" class="whatsapp" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+        WhatsApp
+    </a>
 
-Telegram
+    <a href="viber://chat?number=%2B373XXXXXXXX" class="viber">
+        <i class="fa-brands fa-viber"></i>
+        Viber
+    </a>
 
-</a>
+    <a href="https://m.me/ВАШ_ID" class="messenger" target="_blank">
+        <i class="fa-brands fa-facebook-messenger"></i>
+        Messenger
+    </a>
 
-<a href="#" class="whatsapp">
-
-<i class="fa-brands fa-whatsapp"></i>
-
-WhatsApp
-
-</a>
-
-<a href="#" class="messenger">
-
-<i class="fa-brands fa-facebook-messenger"></i>
-
-Messenger
-
-</a>
+    <a href="https://instagram.com/ВАШ_АККАУНТ" class="instagram" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+        Instagram
+    </a>
 
 </div>
+
+<p class="order-text" data-i18n="orderInfo">
+    <i class="fa-solid fa-envelope"></i>
+    Или оставьте вашу заявку, и мы свяжемся с вами в ближайшее время.
+</p>
 
 <form action="send.php" method="POST">
 

@@ -68,6 +68,8 @@ const translations = {
 
         pricesTitle: "Прайс",
 
+        orderInfo: "Или оставьте вашу заявку, и мы свяжемся с вами в ближайшее время.",
+
         contactsTitle: "Контакты",
 
         formName: "Ваше имя",
@@ -130,6 +132,8 @@ const translations = {
         pricesTitle: "Prețuri",
 
         contactsTitle: "Contacte",
+
+        orderInfo: "Sau trimiteți o solicitare și vă vom contacta în scurt timp.",
 
         formName: "Numele dvs.",
         formPhone: "Telefon",
@@ -209,6 +213,37 @@ if(roBtn){
         "click",
         () => setLanguage("ro")
     );
+}
+
+// =======================
+// БУРГЕР-МЕНЮ (МОБИЛЬНАЯ ВЕРСИЯ)
+// =======================
+
+const burger = document.getElementById("burger");
+const navList = document.getElementById("navList");
+
+if(burger && navList){
+
+    burger.addEventListener("click", () => {
+        burger.classList.toggle("open");
+        navList.classList.toggle("open");
+    });
+
+    // закрывать меню при клике на пункт меню
+    navList.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            burger.classList.remove("open");
+            navList.classList.remove("open");
+        });
+    });
+
+    // закрывать меню, если экран увеличили до десктопного размера
+    window.addEventListener("resize", () => {
+        if(window.innerWidth > 900){
+            burger.classList.remove("open");
+            navList.classList.remove("open");
+        }
+    });
 }
 
 // =======================
