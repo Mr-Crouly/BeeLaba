@@ -32,17 +32,39 @@ const translations = {
         heroTitle: "Натуральный мёд из самого севера Молдовы",
 
         heroText:
-        "Nectevia Moldova — натуральная продукция пчеловодства с собственной пасеки.",
+        "NecteVia Moldova — натуральная продукция пчеловодства с собственной пасеки.",
 
         catalogBtn: "Каталог",
         orderBtn: "Заказать",
 
         historyTitle: "История Nectevia",
 
-        historyText:
-        "Nectevia Moldova — семейная пасека, которая производит натуральный мёд и продукты пчеловодства.",
+        historyText1:
+        "NecteVia Moldova — семейная пасека, которая производит натуральный мёд уже много лет.",
+
+        historyText2:
+        "Мы заботимся о каждой пчелиной семье, контролируем качество продукции и используем современные технологии.",
 
         apiaryTitle: "Наша пасека",
+
+        feature1: "100+ ульев",
+        feature2: "Экологично",
+        feature3: "Высокое качество",
+        feature4: "Доставка",
+
+        product1Title: "Акациевый мёд",
+        product1Desc: "Нежный вкус.",
+
+        product2Title: "Липовый мёд",
+        product2Desc: "Насыщенный аромат.",
+
+        product3Title: "Цветочный",
+        product3Desc: "Натуральный.",
+
+        product4Title: "Пыльца",
+        product4Desc: "Источник витаминов.",
+
+        buyBtn: "Купить",
 
         pricesTitle: "Прайс",
 
@@ -54,8 +76,9 @@ const translations = {
 
         send: "Отправить",
 
-        success:
-        "Спасибо! Мы свяжемся с вами."
+        popupTitle: "Спасибо!",
+        popupText: "Ваш заказ успешно отправлен.",
+        popupClose: "Закрыть"
     },
 
     ro: {
@@ -67,20 +90,42 @@ const translations = {
         order: "Comandă",
         contacts: "Contacte",
 
-        heroTitle: "Miere naturală din inima Moldovei",
+        heroTitle: "Miere naturală din nordul Moldovei",
 
         heroText:
-        "BeeLab Moldova — produse apicole naturale din propria stupină.",
+        "NecteVia Moldova — produse apicole naturale din propria stupină.",
 
         catalogBtn: "Catalog",
         orderBtn: "Comandă",
 
-        historyTitle: "Istoria BeeLab",
+        historyTitle: "Istoria Nectevia",
 
-        historyText:
-        "BeeLab Moldova este o stupină de familie care produce miere naturală și produse apicole.",
+        historyText1:
+        "NecteVia Moldova este o stupină de familie care produce miere naturală de mulți ani.",
+
+        historyText2:
+        "Avem grijă de fiecare familie de albine, controlăm calitatea produselor și folosim tehnologii moderne.",
 
         apiaryTitle: "Stupina noastră",
+
+        feature1: "100+ stupi",
+        feature2: "Ecologic",
+        feature3: "Calitate înaltă",
+        feature4: "Livrare",
+
+        product1Title: "Miere de salcâm",
+        product1Desc: "Gust delicat.",
+
+        product2Title: "Miere de tei",
+        product2Desc: "Aromă intensă.",
+
+        product3Title: "Miere florală",
+        product3Desc: "Naturală.",
+
+        product4Title: "Polen",
+        product4Desc: "Sursă de vitamine.",
+
+        buyBtn: "Cumpără",
 
         pricesTitle: "Prețuri",
 
@@ -92,8 +137,9 @@ const translations = {
 
         send: "Trimite",
 
-        success:
-        "Mulțumim! Vă vom contacta."
+        popupTitle: "Mulțumim!",
+        popupText: "Comanda dvs. a fost trimisă cu succes.",
+        popupClose: "Închide"
     }
 };
 
@@ -103,83 +149,34 @@ function setLanguage(lang){
 
     if(!t) return;
 
-    const navHome =
-        document.querySelector('a[href="#home"]');
-    if(navHome) navHome.textContent = t.home;
+    // Обычный текст (заголовки, кнопки, пункты меню и т.д.)
+    document.querySelectorAll("[data-i18n]").forEach(el => {
 
-    const navHistory =
-        document.querySelector('a[href="#history"]');
-    if(navHistory) navHistory.textContent = t.history;
+        const key = el.getAttribute("data-i18n");
 
-    const navApiary =
-        document.querySelector('a[href="#apiary"]');
-    if(navApiary) navApiary.textContent = t.apiary;
+        if(t[key] !== undefined){
+            el.textContent = t[key];
+        }
+    });
 
-    const navProducts =
-        document.querySelector('a[href="#products"]');
-    if(navProducts) navProducts.textContent = t.catalog;
+    // Плейсхолдеры полей формы
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
 
-    const navPrices =
-        document.querySelector('a[href="#prices"]');
-    if(navPrices) navPrices.textContent = t.prices;
+        const key = el.getAttribute("data-i18n-placeholder");
 
-    const navContacts =
-        document.querySelector('a[href="#contacts"]');
-    if(navContacts) navContacts.textContent = t.contacts;
+        if(t[key] !== undefined){
+            el.placeholder = t[key];
+        }
+    });
 
-    const heroTitle =
-        document.querySelector(".hero h1");
+    // Подсветка активной кнопки языка
+    const ruBtn = document.getElementById("ru");
+    const roBtn = document.getElementById("ro");
 
-    if(heroTitle)
-        heroTitle.textContent =
-            t.heroTitle;
+    if(ruBtn) ruBtn.classList.toggle("active", lang === "ru");
+    if(roBtn) roBtn.classList.toggle("active", lang === "ro");
 
-    const heroText =
-        document.querySelector(".hero p");
-
-    if(heroText)
-        heroText.textContent =
-            t.heroText;
-
-    const btns =
-        document.querySelectorAll(".hero a");
-
-    if(btns.length >= 2){
-
-        btns[0].textContent =
-            t.catalogBtn;
-
-        btns[1].textContent =
-            t.orderBtn;
-    }
-
-    const formName =
-        document.querySelector('input[type="text"]');
-
-    if(formName)
-        formName.placeholder =
-            t.formName;
-
-    const formPhone =
-        document.querySelector('input[type="tel"]');
-
-    if(formPhone)
-        formPhone.placeholder =
-            t.formPhone;
-
-    const textarea =
-        document.querySelector("textarea");
-
-    if(textarea)
-        textarea.placeholder =
-            t.formComment;
-
-    const sendBtn =
-        document.querySelector("form button");
-
-    if(sendBtn)
-        sendBtn.textContent =
-            t.send;
+    document.documentElement.lang = lang;
 
     localStorage.setItem(
         "beelab_language",

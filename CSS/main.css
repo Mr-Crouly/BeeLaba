@@ -81,6 +81,10 @@ nav a:hover{
     background:var(--orange);
 }
 
+.lang button.active{
+    background:var(--dark);
+}
+
 /* ================= HERO ================= */
 
 .hero{
